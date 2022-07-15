@@ -1,41 +1,22 @@
-import { writable } from "svelte/store";
+import { stringStore, objectStore } from "../../stores";
 
-const surgery = writable(null);
-const surgeryDate = writable(null);
-const autopsy = writable(null);
-const usedFoundings = writable(null);
-const mannerOfDeath = writable(null);
-const placeOfDeath = writable(null);
-const multiplePregnancy = writable(null);
-const stillborn = writable(null);
-const hoursAlive = writable(null);
-const weightInGrams = writable(null);
-const fullWeeksOfPregnancy = writable(null);
-const motherAgeInYears = writable(null);
-const womanPregnantCondition = writable("");
-const pregnancyContributionToDeath = writable("");
+const surgery = objectStore(null);
+const surgeryDate = objectStore(null);
+const autopsy = objectStore(null);
+const usedFoundings = objectStore(null);
+const mannerOfDeath = objectStore(null);
+const placeOfDeath = objectStore(null);
+const multiplePregnancy = objectStore(null);
+const stillborn = objectStore(null);
+const hoursAlive = objectStore(null);
+const weightInGrams = objectStore(null);
+const fullWeeksOfPregnancy = objectStore(null);
+const motherAgeInYears = objectStore(null);
+const womanPregnantCondition = objectStore("");
+const pregnancyContributionToDeath = objectStore("");
 
-function stringStore() {
-  const { subscribe, update } = writable("");
-
-  return {
-    subscribe,
-    set: (id) =>
-      update(() =>
-        id
-          .replace(/[áÁ]/, "A")
-          .replace(/[éÉ]/, "E")
-          .replace(/[íÍ]/, "I")
-          .replace(/[óÓ]/, "O")
-          .replace(/[úÚ]/, "U")
-          .replace(/([^0-9a-zA-ZñÑ\/\(\)\-\,\.\s])/g, "")
-          .toUpperCase()
-      ),
-  };
-}
-
-const surgeryReason = stringStore();
-const placeOfDeathOther = stringStore();
+const surgeryReason = stringStore("", 2);
+const placeOfDeathOther = stringStore("", 2);
 
 export {
   surgery,

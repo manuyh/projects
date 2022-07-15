@@ -1,40 +1,21 @@
-import { writable } from "svelte/store";
+import { stringStore, objectStore } from "../../stores";
 
-const a = writable({ code: "", selectedText: "" });
-const b = writable({ code: "", selectedText: "" });
-const c = writable({ code: "", selectedText: "" });
-const d = writable({ code: "", selectedText: "" });
-const part2 = writable({ code: "", selectedText: "" });
+const a = objectStore({ code: "", selectedText: "" });
+const b = objectStore({ code: "", selectedText: "" });
+const c = objectStore({ code: "", selectedText: "" });
+const d = objectStore({ code: "", selectedText: "" });
+const part2 = objectStore({ code: "", selectedText: "" });
 
-const timeA = writable(null);
-const timeUnitA = writable(null);
-const timeB = writable(null);
-const timeUnitB = writable(null);
-const timeC = writable(null);
-const timeUnitC = writable(null);
-const timeD = writable(null);
-const timeUnitD = writable(null);
-const timePart2 = writable(null);
-const timeUnitPart2 = writable(null);
-
-function stringStore() {
-  const { subscribe, update } = writable("");
-
-  return {
-    subscribe,
-    set: (id) =>
-      update(() =>
-        id
-          .replace(/[áÁ]/, "A")
-          .replace(/[éÉ]/, "E")
-          .replace(/[íÍ]/, "I")
-          .replace(/[óÓ]/, "O")
-          .replace(/[úÚ]/, "U")
-          .replace(/([^0-9a-zA-ZñÑ&\/\s])/g, "")
-          .toUpperCase()
-      ),
-  };
-}
+const timeA = objectStore(null);
+const timeUnitA = objectStore(null);
+const timeB = objectStore(null);
+const timeUnitB = objectStore(null);
+const timeC = objectStore(null);
+const timeUnitC = objectStore(null);
+const timeD = objectStore(null);
+const timeUnitD = objectStore(null);
+const timePart2 = objectStore(null);
+const timeUnitPart2 = objectStore(null);
 
 const causeOfDeath = stringStore();
 const aditionalCode = stringStore();

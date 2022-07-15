@@ -3,10 +3,12 @@
   import moment from "moment";
   import Button, { Label } from "@smui/button";
   import Card, { Content } from "@smui/card";
+  import IconButton from "@smui/icon-button";
   import LayoutGrid, { Cell } from "@smui/layout-grid";
   import Select, { Option } from "@smui/select";
   import Textfield from "@smui/textfield";
   import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
+  import Snackbar, { Actions, Label as SnackLabel } from "@smui/snackbar";
   import "@material/typography/dist/mdc.typography.min.css";
 
   import AdministrativeData from "./lib/AdministrativeData/index.svelte";
@@ -91,6 +93,50 @@
     );
   });
 
+  let snackbarWithClose;
+
+  const resetStores = () => {
+    [
+      identifier,
+      gender,
+      age,
+      ageUnit,
+      birthdate,
+      deathdate,
+      variable1,
+      variable2,
+      a,
+      timeA,
+      timeUnitA,
+      b,
+      timeB,
+      timeUnitB,
+      c,
+      timeC,
+      timeUnitC,
+      d,
+      timeD,
+      timeUnitD,
+      part2,
+      timePart2,
+      timeUnitPart2,
+      surgery,
+      surgeryDate,
+      autopsy,
+      usedFoundings,
+      mannerOfDeath,
+      placeOfDeath,
+      multiplePregnancy,
+      stillborn,
+      hoursAlive,
+      weightInGrams,
+      fullWeeksOfPregnancy,
+      motherAgeInYears,
+      womanPregnantCondition,
+      pregnancyContributionToDeath,
+    ].forEach((store) => store.reset());
+  };
+
   const sendInfo = async (event) => {
     const body = {
       identifier: $identifier,
@@ -141,6 +187,9 @@
     });
 
     await response.json();
+
+    snackbarWithClose.open();
+    resetStores();
   };
 </script>
 
@@ -183,6 +232,12 @@
     </Card>
   </Cell>
 </LayoutGrid>
+<Snackbar bind:this={snackbarWithClose}>
+  <SnackLabel>La información ha sido guardada.</SnackLabel>
+  <Actions>
+    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+  </Actions>
+</Snackbar>
 
 <style>
   img.mexican {
