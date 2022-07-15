@@ -1,0 +1,30 @@
+body {
+  background: rgb(250, 250, 250);
+  height: 100vh;
+  margin: 0;
+}
+
+.mdc-top-app-bar {
+  background-color: #fff;
+  color: #000;
+}
+
+.mdc-top-app-bar__row {
+  height: auto !important;
+}
+
+.mdc-top-app-bar__section--align-start {
+  justify-content: space-between;
+}
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+  display: initial !important;
+}
+
+.mdc-card {
+  margin-bottom: 8px;
+}
+
+.chopped {
+  display: none !important;
+}
